@@ -7,10 +7,12 @@ const {
   setDefaultTimeout,
 } = require("cucumber");
 const { Builder, By } = require("selenium-webdriver");
-const { expect } = require("chai");
+const { should } = require("chai");
 const chrome = require("selenium-webdriver/chrome");
 
 require("chromedriver");
+
+should();
 
 setDefaultTimeout(4 * 5000);
 let browser;
@@ -34,12 +36,10 @@ Given(/^Navigate to the sandbox$/, async () => {
 
 When(/^I am on the sandbox page$/, async () => {
   const title = await browser.getTitle();
-  expect(title).to.equal("Sandbox");
+  title.should.eql("Sandbox");
 });
 
 Then(/^The page header should be "([^"]*)"$/, async (expectedHeader) => {
-  const header = await browser.findElement(By.css("h1"));
-  header.getText().then((text) => {
-    expect(text).to.equal(expectedHeader);
-  });
+  const header = await browser.findElement(By.css("h1")).getText();
+  header.should.eql(expectedHeader);
 });
