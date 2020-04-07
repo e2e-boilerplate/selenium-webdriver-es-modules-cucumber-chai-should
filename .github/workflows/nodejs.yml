@@ -2,7 +2,7 @@ name: selenium-webdriver-es-modules-cucumber-chai-should
 'on':
   push: null
   schedule:
-    - cron: 20 8 1-31/2 * *
+    - cron: 40 8 1-31/2 * *
 jobs:
   build:
     runs-on: ubuntu-latest
